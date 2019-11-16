@@ -1,0 +1,12 @@
+#my first playbook
+
+-name: demo
+ hosts : aws
+ remote_user:root
+ tasks:
+   -name: install a package
+    yum: name=ubuntu state=present
+   -name: creating a demofile in /etc
+    copy: content = "Demofile" dest=/etc/demo
+   
+    

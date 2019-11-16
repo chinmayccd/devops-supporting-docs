@@ -1,0 +1,12 @@
+---
+-hosts:appservers
+ become:true
+ tasks:
+   -name: ensure mysql is listening on all ports
+    lineinfile: dest=/etc/mysql/myconf 
+	line="bind-address=0.0.0.0" 
+	notify=restart mysql
+	
+  handlers:
+    -name:restart mysql
+	service:name:mysql state=restarted

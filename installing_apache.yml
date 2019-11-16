@@ -1,0 +1,12 @@
+#configure ec2 instance to webserver
+#install and start a webserver
+
+-hosts:aws
+ become:yes
+ tasks:
+     -name:install apache webserver
+      yum: name=httpd state:latest
+     -name:send a custom index page
+      copy:src=index.html dest=/var/www/html/index.html
+     -name:start the apache server
+      service:name=httpd state=started enabled=true
